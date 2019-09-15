@@ -124,7 +124,7 @@ ${{h}_{\Theta }}(x)=g(\Theta _{10}^{(2)}a_{0}^{(2)}+\Theta _{11}^{(2)}a_{1}^{(2)
 参考视频: 8 - 4 - Model Representation II (12 min).mkv
 
 ( **FORWARD PROPAGATION** )
-相对与使用循环来编码，利用向量化的方法会使得计算更为简便。以上面的神经网络为例，试着计算第二层的值：
+相对于使用循环来编码，利用向量化的方法会使得计算更为简便。以上面的神经网络为例，试着计算第二层的值：
 
 ![](../images/303ce7ad54d957fca9dbb6a992155111.png)
 
@@ -149,8 +149,8 @@ ${{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $
 
 ![](../images/10342b472803c339a9e3bc339188c5b8.png)
 
-其实神经网络就像是logistic regression，只不过我们把**logistic regression**中的输入向量$\left[ x_1\sim {x_3} \right]$ 变成了中间层的$\left[ a_1^{(2)}\sim a_3^{(2)} \right]$, 即:  $h_\theta(x)=g\left( \theta_0^{\left( 2 \right)}a_0^{\left( 2 \right)}+\theta_1^{\left( 2 \right)}a_1^{\left( 2 \right)}+\theta_{2}^{\left( 2 \right)}a_{2}^{\left( 2 \right)}+\theta_{3}^{\left( 2 \right)}a_{3}^{\left( 2 \right)} \right)$ 
-我们可以把$a_0, a_1, a_2, a_3$看成更为高级的特征值，也就是$x_0, x_1, x_2, x_3$的进化体，并且它们是由 $x$与决定的，因为是梯度下降的，所以$a$是变化的，并且变得越来越厉害，所以这些更高级的特征值远比仅仅将 $x$次方厉害，也能更好的预测新数据。
+其实神经网络就像是**logistic regression**，只不过我们把**logistic regression**中的输入向量$\left[ x_1\sim {x_3} \right]$ 变成了中间层的$\left[ a_1^{(2)}\sim a_3^{(2)} \right]$, 即:  $h_\theta(x)=g\left( \Theta_0^{\left( 2 \right)}a_0^{\left( 2 \right)}+\Theta_1^{\left( 2 \right)}a_1^{\left( 2 \right)}+\Theta_{2}^{\left( 2 \right)}a_{2}^{\left( 2 \right)}+\Theta_{3}^{\left( 2 \right)}a_{3}^{\left( 2 \right)} \right)$ 
+我们可以把$a_0, a_1, a_2, a_3$看成更为高级的特征值，也就是$x_0, x_1, x_2, x_3$的进化体，并且它们是由 $x$与$\theta$决定的，因为是梯度下降的，所以$a$是变化的，并且变得越来越厉害，所以这些更高级的特征值远比仅仅将 $x$次方厉害，也能更好的预测新数据。
 这就是神经网络相比于逻辑回归和线性回归的优势。
 
 
@@ -181,7 +181,7 @@ ${{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $
 
 所以我们有：$h_\Theta(x) \approx \text{x}_1 \text{AND} \, \text{x}_2$
 
-所以我们的：
+所以我们的：$h_\Theta(x) $
 
 这就是**AND**函数。
 
@@ -195,28 +195,28 @@ ${{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}}\times {{X}^{T}} $
 
 参考视频: 8 - 6 - Examples and Intuitions II (10 min).mkv
 
-二元逻辑运算符（**BINARY LOGICAL OPERATORS**）当输入特征为布尔值（0或1）时，我们可以用一个单一的激活层可以作为二元逻辑运算符，为了表示不同的运算符，我们之需要选择不同的权重即可。
+二元逻辑运算符（**BINARY LOGICAL OPERATORS**）当输入特征为布尔值（0或1）时，我们可以用一个单一的激活层可以作为二元逻辑运算符，为了表示不同的运算符，我们只需要选择不同的权重即可。
 
 下图的神经元（三个权重分别为-30，20，20）可以被视为作用同于逻辑与（**AND**）：
 
-![](../images/57480b04956f1dc54ecfc64d68a6b357.jpg)
+![](../images/57480b04956f1dc54ecfc64d68a6b357.png)
 
 下图的神经元（三个权重分别为-10，20，20）可以被视为作用等同于逻辑或（**OR**）：
 
-![](../images/7527e61b1612dcf84dadbcf7a26a22fb.jpg)
+![](../images/7527e61b1612dcf84dadbcf7a26a22fb.png)
 
 下图的神经元（两个权重分别为 10，-20）可以被视为作用等同于逻辑非（**NOT**）：
 
-![](../images/1fd3017dfa554642a5e1805d6d2b1fa6.jpg)
+![](../images/1fd3017dfa554642a5e1805d6d2b1fa6.png)
 
-我们可以利用神经元来组合成更为复杂的神经网络以实现更复杂的运算。例如我们要实现**XNOR** 功能（输入的两个值必须一样，均为1或均为0），即 $\text{XNOR}=( \text{x}_1\, \text{AND}\, \text{x}_2 )\, \text{OR} \left( \left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right) \right)$
-首先构造一个能表达$\left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right)$部分的神经元：
+我们可以利用神经元来组合成更为复杂的神经网络以实现更复杂的运算。例如我们要实现**XNOR** 功能（输入的两个值必须一样，均为1或均为0），即 $\text{XNOR}=( \text{x}_1\, \text{AND}\, \text{x}_2 )\, \text{OR} \left( \left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right) \right)​$
+首先构造一个能表达$\left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right)​$部分的神经元：
 
-![](../images/4c44e69a12b48efdff2fe92a0a698768.jpg)
+![](../images/4c44e69a12b48efdff2fe92a0a698768.png)
 
-然后将表示 **AND** 的神经元和表示$\left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right)$的神经元以及表示 OR 的神经元进行组合：
+然后将表示 **AND** 的神经元和表示$\left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right)​$的神经元以及表示 OR 的神经元进行组合：
 
-![](../images/432c906875baca78031bd337fe0c8682.jpg)
+![](../images/432c906875baca78031bd337fe0c8682.png)
 
 我们就得到了一个能实现 $\text{XNOR}$ 运算符功能的神经网络。
 
